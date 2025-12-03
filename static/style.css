@@ -1,0 +1,5 @@
+/* small helpers */
+.font-inter { font-family: 'Inter', sans-serif; }
+
+/* if you want a default hero image background fallback, uncomment and set path */
+/* .bg-hero { background-image: url('/static/images/hero-bg.jpg'); background-size: cover; background-position: center; } */

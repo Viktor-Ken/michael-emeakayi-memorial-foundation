@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="text-center py-16">
+  <h1 class="text-4xl md:text-5xl font-bold">About Us</h1>
+  <p class="mt-4 text-gray-600 max-w-3xl mx-auto">Honouring the legacy of High Chief Michael Emeakayi by empowering the next generation through education, agriculture and digital skills.</p>
+</section>
+
+<section class="grid md:grid-cols-2 gap-12 items-center mb-16">
+  <div>
+    <h2 class="text-3xl font-bold">The Foundation’s Origin</h2>
+    <p class="mt-4 text-gray-600">The Michael Emeakayi Memorial Foundation is a registered non-profit established in loving memory of High Chief Michael Emeakayi of Umuohi, Okija. Founded in April 2025 by his children, the Foundation continues his legacy by creating opportunities for young people and supporting underserved families through targeted and sustainable programmes.</p>
+  </div>
+  <div>
+    <img src="{{ url_for('static', filename='images/about-hero.jpg') }}" alt="Foundation" class="rounded-2xl shadow-md w-full h-72 object-cover">
+  </div>
+</section>
+
+<section class="grid md:grid-cols-2 gap-8 mb-16">
+  <div class="bg-white p-8 rounded-xl shadow-sm">
+    <h3 class="text-xl font-semibold">Our Mission</h3>
+    <p class="mt-3 text-gray-600">To deliver transformative, community-led initiatives that promote academic excellence, agricultural innovation, and digital empowerment for young people and families in underserved communities.</p>
+  </div>
+  <div class="bg-white p-8 rounded-xl shadow-sm">
+    <h3 class="text-xl font-semibold">Our Vision</h3>
+    <p class="mt-3 text-gray-600">To build a self-reliant, educated, and empowered society through integrated grassroots programmes in education, agriculture, and digital skills.</p>
+  </div>
+</section>
+
+<section class="mb-16">
+  <h2 class="text-3xl font-bold">Who We Are</h2>
+  <p class="mt-4 text-gray-600 max-w-3xl">The Foundation serves as the umbrella for a growing portfolio of developmental programmes. We focus on youth empowerment, education, sustainable agriculture and digital literacy across Umuohi and beyond.</p>
+</section>
+
+<section class="py-12 bg-blue-700 text-white rounded-xl">
+  <div class="max-w-3xl mx-auto text-center">
+    <h3 class="text-2xl font-semibold">The Legacy of High Chief Michael Emeakayi</h3>
+    <p class="mt-4 text-blue-100">High Chief Michael Emeakayi was known for his generosity and commitment to education and agriculture. His values continue through the Foundation — honouring his life by uplifting future generations.</p>
+  </div>
+</section>
+
+{% endblock %}

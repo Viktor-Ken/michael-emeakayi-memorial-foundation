@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="text-center py-16">
+  <h1 class="text-4xl font-bold">Our Events</h1>
+  <p class="mt-4 text-gray-600 max-w-2xl mx-auto">From harvest celebrations to scholarship awards, our events bring people together to celebrate and raise funds.</p>
+</section>
+
+<section class="grid md:grid-cols-2 gap-8 mb-16">
+  {% for event in events %}
+  <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+    <img src="{{ url_for('static', filename='images/' ~ event.image) }}" alt="{{ event.title }}" class="w-full h-64 object-cover">
+    <div class="p-6">
+      <h3 class="text-2xl font-semibold">{{ event.title }}</h3>
+      <p class="text-blue-700 mt-2">📅 {{ event.date }}</p>
+      <p class="mt-4 text-gray-600">{{ event.description }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}

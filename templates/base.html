@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Michael Emeakayi Memorial Foundation</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN (convenient for development) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Optional small custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gray-50 font-inter text-gray-900">
+
+  <!-- NAV -->
+  <header class="bg-white shadow-sm fixed top-0 left-0 right-0 z-40">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <a href="{{ url_for('home') }}" class="flex items-center gap-3">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="logo" class="h-10 w-10 object-cover rounded-md">
+        <div class="leading-tight">
+          <div class="text-lg font-semibold">Michael Emeakayi</div>
+          <div class="text-xs text-gray-500">Memorial Foundation</div>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm">
+        <a href="{{ url_for('home') }}" class="hover:text-blue-700">Home</a>
+        <a href="{{ url_for('about') }}" class="hover:text-blue-700">About</a>
+        <a href="{{ url_for('initiatives') }}" class="hover:text-blue-700">Initiatives</a>
+        <a href="{{ url_for('trustees') }}" class="hover:text-blue-700">Trustees</a>
+        <a href="{{ url_for('events') }}" class="hover:text-blue-700">Events</a>
+        <a href="{{ url_for('contact') }}" class="hover:text-blue-700">Contact</a>
+        <a href="{{ url_for('donate') }}" class="bg-blue-700 text-white px-4 py-2 rounded-lg">Donate</a>
+      </nav>
+
+      <!-- mobile menu button -->
+      <div class="md:hidden">
+        <button id="mobileBtn" class="text-2xl">☰</button>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+      <div class="px-4 pb-4">
+        <a href="{{ url_for('home') }}" class="block py-2">Home</a>
+        <a href="{{ url_for('about') }}" class="block py-2">About</a>
+        <a href="{{ url_for('initiatives') }}" class="block py-2">Initiatives</a>
+        <a href="{{ url_for('trustees') }}" class="block py-2">Trustees</a>
+        <a href="{{ url_for('events') }}" class="block py-2">Events</a>
+        <a href="{{ url_for('contact') }}" class="block py-2">Contact</a>
+        <a href="{{ url_for('donate') }}" class="block py-2 text-blue-700 font-semibold">Donate</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="pt-24">
+    <div class="max-w-7xl mx-auto px-6">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="mt-16 bg-white border-t">
+    <div class="max-w-7xl mx-auto px-6 py-10 grid md:grid-cols-3 gap-8">
+      <div>
+        <h4 class="font-semibold text-lg">Michael Emeakayi Memorial Foundation</h4>
+        <p class="mt-3 text-gray-600">Honouring Legacy. Empowering Generations.</p>
+      </div>
+
+      <div>
+        <h5 class="font-semibold mb-2">Quick Links</h5>
+        <ul class="text-gray-600">
+          <li><a href="{{ url_for('about') }}">About</a></li>
+          <li><a href="{{ url_for('initiatives') }}">Initiatives</a></li>
+          <li><a href="{{ url_for('trustees') }}">Trustees</a></li>
+          <li><a href="{{ url_for('events') }}">Events</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 class="font-semibold mb-2">Contact</h5>
+        <p class="text-gray-600">Umuohi, Okija • Anambra State</p>
+        <p class="text-gray-600">Email: info@michael-emeakayi-foundation.org</p>
+      </div>
+    </div>
+
+    <div class="bg-gray-50 py-4 text-center text-sm text-gray-600">
+      &copy; {{ current_year }} Michael Emeakayi Memorial Foundation. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    // mobile menu toggle
+    document.getElementById('mobileBtn')?.addEventListener('click', function() {
+      const m = document.getElementById('mobileMenu');
+      if (!m) return;
+      if (m.classList.contains('hidden')) m.classList.remove('hidden'); else m.classList.add('hidden');
+    });
+  </script>
+
+</body>
+</html>

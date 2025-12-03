@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- HERO -->
+<section class="text-center py-20 rounded-xl mb-16 bg-cover bg-center" 
+         class="bg-hero"
+         >
+  <div class="max-w-4xl mx-auto p-8 rounded-xl bg-gradient-to-b from-black/50 to-black/30">
+    <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">Michael Emeakayi Memorial Foundation</h1>
+    <p class="mt-4 text-gray-200 text-lg">Honouring Legacy. Empowering Generations.</p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a href="{{ url_for('about') }}" class="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold">Learn More</a>
+      <a href="{{ url_for('donate') }}" class="bg-blue-700 text-white px-6 py-3 rounded-xl font-semibold">Donate</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PREVIEW -->
+<section class="grid md:grid-cols-2 gap-12 items-center mb-16">
+  <div>
+    <h2 class="text-3xl font-bold">Who We Are</h2>
+    <p class="mt-4 text-gray-600">The Michael Emeakayi Memorial Foundation is dedicated to advancing community development, promoting education, agriculture, and digital empowerment for young people and families.</p>
+    <a href="{{ url_for('about') }}" class="mt-6 inline-block text-blue-700 font-semibold">Learn More →</a>
+  </div>
+
+  <div>
+    <img src="{{ url_for('static', filename='images/about-preview.jpg') }}" alt="About preview" class="rounded-2xl shadow-lg w-full h-72 object-cover">
+  </div>
+</section>
+
+<!-- INITIATIVES -->
+<section class="mb-16 bg-gray-50 p-8 rounded-2xl">
+  <h2 class="text-3xl font-bold text-center">Our Core Initiatives</h2>
+  <div class="grid md:grid-cols-3 gap-6 mt-8">
+    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+      <h3 class="font-semibold text-lg">Academic Scholarship Awards</h3>
+      <p class="text-gray-600 mt-2">Supporting academic excellence in STEM, business and agriculture.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+      <h3 class="font-semibold text-lg">Agricultural Empowerment</h3>
+      <p class="text-gray-600 mt-2">Training students in climate-smart farming and promoting food security.</p>
+    </div>
+    <div class="bg-white p-6 rounded-xl shadow-sm text-center">
+      <h3 class="font-semibold text-lg">IT Skills Training (2026)</h3>
+      <p class="text-gray-600 mt-2">Digital literacy and foundational tech education.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTS PREVIEW -->
+<section class="mb-16">
+  <h2 class="text-3xl font-bold">Upcoming Events</h2>
+  <div class="grid md:grid-cols-2 gap-8 mt-8">
+    {% for event in events %}
+    <div class="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <img src="{{ url_for('static', filename='images/' ~ event.image) }}" alt="{{ event.title }}" class="w-full h-56 object-cover">
+      <div class="p-6">
+        <h3 class="text-xl font-semibold">{{ event.title }}</h3>
+        <p class="text-blue-700 mt-2">📅 {{ event.date }}</p>
+        <p class="mt-4 text-gray-600">{{ event.description }}</p>
+        <a href="{{ url_for('events') }}" class="mt-4 inline-block text-blue-600 font-semibold">View Events →</a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 bg-blue-700 text-white rounded-2xl text-center">
+  <h3 class="text-3xl font-bold">Make a Difference Today</h3>
+  <p class="mt-4 max-w-2xl mx-auto">Your support helps us fund scholarships, empower farmers, and build the digital future of our youth.</p>
+  <a href="{{ url_for('donate') }}" class="mt-6 inline-block bg-white text-blue-700 px-8 py-3 rounded-xl font-bold">Donate Now</a>
+</section>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="text-center py-16">
+  <h1 class="text-4xl font-bold">Board of Trustees</h1>
+  <p class="mt-4 text-gray-600 max-w-2xl mx-auto">Dedicated leaders committed to preserving the legacy of High Chief Michael Emeakayi.</p>
+</section>
+
+<section class="grid md:grid-cols-3 gap-8 mb-16">
+  {% for trustee in trustees %}
+  <div class="bg-white rounded-xl shadow-sm overflow-hidden">
+    <img src="{{ url_for('static', filename='images/' ~ trustee.image) }}" alt="{{ trustee.name }}" class="w-full h-64 object-cover">
+    <div class="p-6">
+      <h3 class="text-xl font-semibold">{{ trustee.name }}</h3>
+      <p class="text-blue-700 mt-1">{{ trustee.role }}</p>
+      <p class="mt-4 text-gray-600">{{ trustee.bio }}</p>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
