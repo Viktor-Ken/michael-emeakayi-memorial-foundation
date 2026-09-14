@@ -1,0 +1,24 @@
+{% extends "admin/base.html" %}
+{% block title %}Trustee — Admin{% endblock %}
+{% block admin_content %}
+<div class="admin-header">
+    <h1>{{ 'Edit trustee' if mode == 'edit' else 'Add trustee' }}</h1>
+    <a class="btn btn-small" href="{{ url_for('admin_trustees') }}">Back to trustees</a>
+</div>
+
+<form class="form form-narrow" method="post">
+    <div class="form-field">
+        <label for="name">Full name</label>
+        <input type="text" id="name" name="name" value="{{ trustee.name if trustee else '' }}" required>
+    </div>
+    <div class="form-field">
+        <label for="role">Role (e.g. Chairperson)</label>
+        <input type="text" id="role" name="role" value="{{ trustee.role if trustee else '' }}" required>
+    </div>
+    <div class="form-field">
+        <label for="bio">Brief bio</label>
+        <textarea id="bio" name="bio" rows="5">{{ trustee.bio if trustee else '' }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">{{ 'Save changes' if mode == 'edit' else 'Add trustee' }}</button>
+</form>
+{% endblock %}

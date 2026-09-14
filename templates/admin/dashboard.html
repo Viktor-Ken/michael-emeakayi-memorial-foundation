@@ -1,0 +1,52 @@
+{% extends "admin/base.html" %}
+{% block title %}Admin — Michael Emeakayi Memorial Foundation{% endblock %}
+{% block admin_content %}
+<div class="admin-header">
+    <h1>Admin dashboard</h1>
+    <p>Simple content management for trustees, events and contact messages.</p>
+</div>
+
+<div class="stat-grid">
+    <a class="stat-card" href="{{ url_for('admin_trustees') }}">
+        <span class="stat-number">{{ counts.trustees }}</span>
+        <span class="stat-label">Trustees</span>
+    </a>
+    <a class="stat-card" href="{{ url_for('admin_events') }}">
+        <span class="stat-number">{{ counts.events }}</span>
+        <span class="stat-label">Events</span>
+    </a>
+    <a class="stat-card" href="{{ url_for('admin_messages') }}">
+        <span class="stat-number">{{ counts.messages }}</span>
+        <span class="stat-label">Messages</span>
+    </a>
+</div>
+
+<div class="admin-panel">
+    <div class="admin-panel-header">
+        <h2>Recent messages</h2>
+        <a class="btn btn-small" href="{{ url_for('admin_messages') }}">View all</a>
+    </div>
+    {% if recent %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Subject</th>
+                    <th>Received</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in recent %}
+                    <tr>
+                        <td>{{ message.name }}</td>
+                        <td>{{ message.subject or "—" }}</td>
+                        <td>{{ message.created_at }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No messages yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

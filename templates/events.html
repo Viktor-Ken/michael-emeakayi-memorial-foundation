@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Events — Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="hero-eyebrow">Join us</p>
+        <h1>Events</h1>
+        <p class="hero-lead">The Annual Harvest, Award Presentation and Fundraising Event is our flagship gathering, but it is only part of the story.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container content">
+        <div class="section-heading">
+            <h2>The Annual Harvest</h2>
+            <p class="mission-statement">Each year the Foundation hosts a single unified celebration of education, agriculture and community impact. Students, educators, families and global supporters come together to honour excellence, distribute scholarships and harvests, and raise funds for the next programme cycle.</p>
+        </div>
+
+        {% if events %}
+            <div class="events-list">
+                {% for event in events %}
+                    <article class="event-card">
+                        <div class="event-card-date">
+                            <span class="event-date-day">{{ event.date[8:10] }}</span>
+                            <span class="event-date-month">{{ event.date[5:7] }}/{{ event.date[0:4] }}</span>
+                        </div>
+                        <div class="event-card-body">
+                            <h3>{{ event.title }}</h3>
+                            <p class="event-meta">{{ event.location }}</p>
+                            <p>{{ event.description }}</p>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No events are currently scheduled. Get in touch to hear about our next gathering.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-inner">
+        <h2>Join us in Umuohi</h2>
+        <p>If you would like to attend an event, sponsor a scholarship or share ideas, send us a message and we will be glad to hear from you.</p>
+        <a class="btn btn-primary" href="{{ url_for('contact') }}">Contact us</a>
+    </div>
+</section>
+{% endblock %}

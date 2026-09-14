@@ -1,0 +1,10 @@
+INSERT INTO trustees (name, role, bio) VALUES
+('Hope Chizoba Emeakayi Okafor', 'Founder & Chairperson', 'Researcher and community advocate based in the United Kingdom. She founded the Foundation in April 2025 and leads its vision, planning and coordination.'),
+('Kenneth Okwuchukwu Emeakayi', 'Trustee & Patron', 'A respected elder statesman and community leader with a long history of public service, mentorship and advocacy. As Patron he brings wisdom, oversight and strategic direction to the Foundation''s governance and long-term vision.'),
+('Chisom Francisca Emeakayi', 'Trustee & Secretary', 'Handles the administrative coordination and record-keeping for all Foundation activities and meetings.'),
+('Angelina Mmachukwu Emeakayi', 'Trustee, Matron & Wife of the Late High Chief Michael Emeakayi', 'A pillar of strength in the Umuohi community and lifelong partner to the late Chief. As Matron she provides moral and intergenerational guidance, keeping the Foundation true to its founding values of service, generosity and dignity.'),
+('Victor Nnamdi Emeakayi', 'Trustee & IT Programme Coordinator', 'Leads the design and rollout of the IT Skills Training Programme and the development of the IT training centre. He also supports overall programme oversight and strategic planning across the Foundation.''s work.');
+
+INSERT INTO events (title, date, location, description) VALUES
+('Annual Harvest, Award Presentation and Fundraising Event', '2026-12-19', 'Umuohi, Okija, Anambra State', 'The Foundation''s flagship gathering. Students receive scholarships and harvest awards, produce is shared with vulnerable families, and funds are raised to support the next programme cycle.'),
+('Inaugural Annual Harvest and Fundraising Event', '2025-12-20', 'Umuohi, Okija, Anambra State', 'The first celebration of the Foundation''s work, bringing together students, educators, families and supporters from Nigeria and abroad.');

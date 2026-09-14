@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% block title %}Trustees — Admin{% endblock %}
+{% block admin_content %}
+<div class="admin-header">
+    <h1>Trustees</h1>
+    <a class="btn btn-primary" href="{{ url_for('admin_trustee_new') }}">Add trustee</a>
+</div>
+
+{% if trustees %}
+    <div class="admin-table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Bio</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for trustee in trustees %}
+                    <tr>
+                        <td>{{ trustee.name }}</td>
+                        <td>{{ trustee.role }}</td>
+                        <td class="table-truncate">{{ trustee.bio }}</td>
+                        <td class="table-actions">
+                            <a class="btn btn-small" href="{{ url_for('admin_trustee_edit', tid=trustee.id) }}">Edit</a>
+                            <form method="post" action="{{ url_for('admin_trustee_delete', tid=trustee.id) }}" onsubmit="return confirm('Delete {{ trustee.name }}?');">
+                                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No trustees yet. Add your first trustee.</p>
+{% endif %}
+{% endblock %}

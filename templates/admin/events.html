@@ -1,0 +1,40 @@
+{% extends "admin/base.html" %}
+{% block title %}Events — Admin{% endblock %}
+{% block admin_content %}
+<div class="admin-header">
+    <h1>Events</h1>
+    <a class="btn btn-primary" href="{{ url_for('admin_event_new') }}">Add event</a>
+</div>
+
+{% if events %}
+    <div class="admin-table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for event in events %}
+                    <tr>
+                        <td>{{ event.title }}</td>
+                        <td>{{ event.date }}</td>
+                        <td>{{ event.location }}</td>
+                        <td class="table-actions">
+                            <a class="btn btn-small" href="{{ url_for('admin_event_edit', eid=event.id) }}">Edit</a>
+                            <form method="post" action="{{ url_for('admin_event_delete', eid=event.id) }}" onsubmit="return confirm('Delete {{ event.title }}?');">
+                                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No events yet. Add your first event.</p>
+{% endif %}
+{% endblock %}

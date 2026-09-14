@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="admin-bar">
+    <div class="container admin-bar-inner">
+        <a class="{{ 'active' if request.endpoint == 'admin_dashboard' }}" href="{{ url_for('admin_dashboard') }}">Dashboard</a>
+        <a class="{{ 'active' if 'trustee' in (request.endpoint or '') }}" href="{{ url_for('admin_trustees') }}">Trustees</a>
+        <a class="{{ 'active' if request.endpoint and 'event' in request.endpoint }}" href="{{ url_for('admin_events') }}">Events</a>
+        <a class="{{ 'active' if request.endpoint and 'message' in request.endpoint }}" href="{{ url_for('admin_messages') }}">Messages</a>
+        <a href="{{ url_for('index') }}">View site</a>
+    </div>
+</div>
+<div class="container admin-container">
+    {% block admin_content %}{% endblock %}
+</div>
+{% endblock %}

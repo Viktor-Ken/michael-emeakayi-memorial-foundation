@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Initiatives — Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="hero-eyebrow">Our work</p>
+        <h1>Three core initiatives</h1>
+        <p class="hero-lead">Each programme honours something the late Chief stood for: strong learners, skilled farmers and a generation ready for the digital age.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <article class="programme" id="scholarships">
+            <div class="programme-number">01</div>
+            <div class="programme-content">
+                <h2>Academic Scholarship Awards</h2>
+                <p>We celebrate academic excellence among primary and secondary school students, placing a particular focus on STEM, business and agriculture subjects. Hard work in the classroom deserves recognition, and these awards give promising young people the encouragement to keep going.</p>
+                <ul class="programme-list">
+                    <li>Annual awards for primary and secondary students</li>
+                    <li>Recognition across STEM, business and agricultural studies</li>
+                    <li>Presented at the Annual Harvest and Fundraising Event</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="programme" id="agriculture">
+            <div class="programme-number">02</div>
+            <div class="programme-content">
+                <h2>Agricultural Empowerment Programme</h2>
+                <p>Young people are given hands-on training in climate-smart farming techniques that protect the soil and lift yields. Every year the Foundation recognises the best young farmers with awards, and part of the harvest is shared with vulnerable families in Umuohi.</p>
+                <ul class="programme-list">
+                    <li>Practical training in climate-smart farming methods</li>
+                    <li>Annual awards for outstanding young farmers</li>
+                    <li>Produce from the programme shared with vulnerable households</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="programme" id="it-skills">
+            <div class="programme-number">03</div>
+            <div class="programme-content">
+                <h2>IT Skills Training <span class="badge">Launching 2026</span></h2>
+                <p>Digital literacy and foundational tech education will prepare students for the digital economy. The programme begins with the establishment of a dedicated IT training centre, giving young people in Umuohi and Okija a place to learn, practice and build real skills.</p>
+                <ul class="programme-list">
+                    <li>Community digital literacy classes</li>
+                    <li>Foundational tech education for students</li>
+                    <li>A dedicated IT training centre in the community</li>
+                </ul>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <h2>How it all comes together</h2>
+            <p>Our programmes reach their peak once a year. At the Annual Harvest, Award Presentation and Fundraising Event, students collect their scholarships, young farmers are honoured, and supporters from Nigeria and the diaspora come together to fund the next cycle of work.</p>
+            <a class="btn btn-primary" href="{{ url_for('events') }}">See the event details</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

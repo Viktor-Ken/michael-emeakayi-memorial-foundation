@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Michael Emeakayi Memorial Foundation{% endblock %}</title>
+    <meta name="description" content="Honouring the life and legacy of Michael Emeakayi through education, agriculture and digital skills.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="{{ url_for('index') }}">
+                <span class="brand-mark">ME</span>
+                <span class="brand-text">Michael Emeakayi<br><small>Memorial Foundation</small></span>
+            </a>
+            <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="main-nav" aria-label="Main navigation">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('about') }}">About</a>
+                <a href="{{ url_for('initiatives') }}">Initiatives</a>
+                <a href="{{ url_for('trustees') }}">Trustees</a>
+                <a href="{{ url_for('events') }}">Events</a>
+                <a href="{{ url_for('contact') }}">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="container">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <h4>Michael Emeakayi Memorial Foundation</h4>
+                <p>Honouring the memory of High Chief Michael Emeakayi of Umuohi, Okija, through scholarships, farming support and digital skills for a new generation.</p>
+            </div>
+            <div>
+                <h4>Explore</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('about') }}">About us</a></li>
+                    <li><a href="{{ url_for('initiatives') }}">Our initiatives</a></li>
+                    <li><a href="{{ url_for('trustees') }}">Meet the trustees</a></li>
+                    <li><a href="{{ url_for('events') }}">Events</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get involved</h4>
+                <ul class="footer-links">
+                    <li><a href="{{ url_for('contact') }}">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Michael Emeakayi Memorial Foundation. Registered non-profit organisation.</p>
+            <p class="admin-link"><a href="{{ url_for('admin_dashboard') }}">Admin</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.querySelector(".nav-toggle");
+        const nav = document.querySelector(".main-nav");
+        if (toggle && nav) {
+            toggle.addEventListener("click", function () {
+                const open = nav.classList.toggle("open");
+                toggle.setAttribute("aria-expanded", open);
+            });
+        }
+    </script>
+</body>
+</html>

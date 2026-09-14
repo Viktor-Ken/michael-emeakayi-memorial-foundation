@@ -1,0 +1,43 @@
+{% extends "admin/base.html" %}
+{% block title %}Messages — Admin{% endblock %}
+{% block admin_content %}
+<div class="admin-header">
+    <h1>Contact messages</h1>
+    <p>Messages submitted through the contact form on the public site.</p>
+</div>
+
+{% if messages %}
+    <div class="admin-table-wrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Received</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ message.name }}</td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.subject or "—" }}</td>
+                        <td class="table-message">{{ message.message }}</td>
+                        <td>{{ message.created_at }}</td>
+                        <td class="table-actions">
+                            <form method="post" action="{{ url_for('admin_message_delete', mid=message.id) }}" onsubmit="return confirm('Delete this message?');">
+                                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <p>No messages yet.</p>
+{% endif %}
+{% endblock %}

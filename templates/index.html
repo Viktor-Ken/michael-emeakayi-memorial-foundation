@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-inner">
+        <p class="hero-eyebrow">Umuohi, Okija, Anambra State</p>
+        <h1>Honouring Legacy. Empowering Generations.</h1>
+        <p class="hero-lead">The Michael Emeakayi Memorial Foundation is a registered non-profit founded in memory of High Chief Michael Emeakayi, a farmer, philanthropist and community leader. His work lives on through our scholarships, our farms, and our classrooms.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ url_for('contact') }}">Get in touch</a>
+            <a class="btn btn-secondary" href="{{ url_for('initiatives') }}">Explore initiatives</a>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <h2>Our mission</h2>
+            <p class="mission-statement">To deliver transformative, community-led initiatives that promote academic excellence, agricultural innovation and digital empowerment for young people and families in underserved communities.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-heading">
+            <h2>What we do</h2>
+            <p>Three programmes, one goal: to give young people in Umuohi and beyond real chances to get ahead.</p>
+        </div>
+        <div class="card-grid">
+            <article class="card">
+                <div class="card-icon">S</div>
+                <h3>Academic Scholarship Awards</h3>
+                <p>Prizes that reward academic excellence among primary and secondary students, with a focus on STEM, business and agriculture.</p>
+                <a class="text-link" href="{{ url_for('initiatives') }}#scholarships">Read more</a>
+            </article>
+            <article class="card">
+                <div class="card-icon">A</div>
+                <h3>Agricultural Empowerment Programme</h3>
+                <p>Hands-on training in climate-smart farming, with annual awards and produce shared with vulnerable families.</p>
+                <a class="text-link" href="{{ url_for('initiatives') }}#agriculture">Read more</a>
+            </article>
+            <article class="card">
+                <div class="card-icon">IT</div>
+                <h3>IT Skills Training</h3>
+                <p>Digital literacy and foundational tech education, launching 2026 with a dedicated training centre.</p>
+                <a class="text-link" href="{{ url_for('initiatives') }}#it-skills">Read more</a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="split">
+            <div>
+                <h2>The Annual Harvest</h2>
+                <p>Each year we gather students, educators, families and supporters for a single celebration of education, agriculture and community impact. Scholarships are awarded, harvests are shared, and funds are raised for the year ahead.</p>
+                <a class="text-link" href="{{ url_for('events') }}">See the event calendar</a>
+            </div>
+            <div class="event-list">
+                {% for event in events %}
+                    <div class="event-item">
+                        <div class="event-date">
+                            <span class="event-date-day">{{ event.date[8:10] }}</span>
+                            <span class="event-date-month">{{ event.date[5:7] }}/{{ event.date[0:4] }}</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>{{ event.title }}</h3>
+                            <p>{{ event.location }}</p>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No events scheduled yet. Check back soon.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-inner">
+        <h2>Help us keep this work growing</h2>
+        <p>Whether you want to volunteer, partner with the Foundation, or find out how to support a scholarship or farm programme, we would love to hear from you.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ url_for('contact') }}">Get in touch</a>
+            <a class="btn btn-secondary" href="{{ url_for('about') }}">Learn about us</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

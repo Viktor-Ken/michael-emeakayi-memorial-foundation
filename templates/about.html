@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}About — Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="hero-eyebrow">About the Foundation</p>
+        <h1>Honouring Legacy. Empowering Generations.</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container content">
+        <div class="split">
+            <div class="content-body">
+                <h2>Remembering High Chief Michael Emeakayi</h2>
+                <p>The Michael Emeakayi Memorial Foundation is a registered non-profit organisation established in loving memory of High Chief Michael Emeakayi, a distinguished farmer, philanthropist and community leader from Umuohi, Okija.</p>
+                <p>His life was shaped by compassion, generosity and a deep commitment to education, agriculture and service. Those who knew him described a man who gave freely, taught willingly, and worked tirelessly for the good of his people.</p>
+                <p>The Foundation was set up by his children in April 2025 so that the values he lived by would continue to make a difference long after his passing.</p>
+            </div>
+            <div class="content-side">
+                <h3>Our Vision</h3>
+                <p>To build a self-reliant, educated and empowered society through integrated grassroots programmes in education, agriculture and digital skills.</p>
+                <h3>Our Mission</h3>
+                <p>To deliver transformative, community-led initiatives that promote academic excellence, agricultural innovation and digital empowerment for young people and families in underserved communities.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container content">
+        <div class="section-heading">
+            <h2>Who we are</h2>
+        </div>
+        <div class="content-body">
+            <p>The Michael Emeakayi Memorial Foundation serves as the umbrella body for a growing portfolio of developmental programmes. Founded in April 2025 by his children, the Foundation is dedicated to advancing local development in Umuohi and beyond, with a focus on youth, education and sustainable livelihoods.</p>
+            <p>We are a small organisation with a big mandate. Our programmes target the same areas that mattered most to the late Chief Michael: children who need educational support, young people who want practical farm skills, and a new generation learning to navigate the digital economy.</p>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container content">
+        <div class="section-heading">
+            <h2>Where your support goes</h2>
+        </div>
+        <div class="value-list">
+            <div class="value-item">
+                <span class="value-label">Education</span>
+                <p>Primary and secondary school scholarships, book drives and mentorship for students across Umuohi and Okija.</p>
+            </div>
+            <div class="value-item">
+                <span class="value-label">Agriculture</span>
+                <p>Climate-smart farming training for young people, with harvests shared directly with families who need it most.</p>
+            </div>
+            <div class="value-item">
+                <span class="value-label">Digital Skills</span>
+                <p>Foundational IT training, launching in 2026, to help students compete in the modern economy.</p>
+            </div>
+            <div class="value-item">
+                <span class="value-label">Community</span>
+                <p>The Annual Harvest event, scholarships, farming awards and a volunteer network that connects Umuohi to supporters at home and abroad.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-inner">
+        <h2>Be part of this story</h2>
+        <p>Meet the people who carry this work forward, or reach out to find out how you can help.</p>
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="{{ url_for('trustees') }}">Meet the trustees</a>
+            <a class="btn btn-secondary" href="{{ url_for('contact') }}">Get in touch</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

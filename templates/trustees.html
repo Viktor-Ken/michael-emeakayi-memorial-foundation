@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Trustees — Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="container">
+        <p class="hero-eyebrow">Leadership</p>
+        <h1>Board of Trustees</h1>
+        <p class="hero-lead">The Foundation is governed by a committed Board of Trustees made up of family members and dedicated individuals.</p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        {% if trustees %}
+            <div class="trustee-grid">
+                {% for trustee in trustees %}
+                    <article class="trustee-card">
+                        <div class="trustee-avatar">{{ trustee.name[:1] }}</div>
+                        <h3>{{ trustee.name }}</h3>
+                        <p class="trustee-role">{{ trustee.role }}</p>
+                        <p class="trustee-bio">{{ trustee.bio }}</p>
+                    </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>Trustee information is being finalised. Please check back soon.</p>
+        {% endif %}
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container cta-inner">
+        <h2>Support the people behind the work</h2>
+        <p>The trustees give their time freely. There are many ways to help, from volunteering your time to introducing partners who share our goals.</p>
+        <a class="btn btn-primary" href="{{ url_for('contact') }}">Get in touch</a>
+    </div>
+</section>
+{% endblock %}
