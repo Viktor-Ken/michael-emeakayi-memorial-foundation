@@ -14,6 +14,7 @@
     <div class="container">
         <div class="split">
             <form class="form" method="post" action="{{ url_for('contact') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <div class="form-field">
                     <label for="name">Full name</label>
                     <input type="text" id="name" name="name" required autocomplete="name">

@@ -1,0 +1,19 @@
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+check_untyped_defs = true
+ignore_missing_imports = true
+files = ["app.py", "db.py", "validators.py", "wsgi.py"]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["tests.py", "scripts/*", "wsgi.py"]
+
+[tool.coverage.report]
+fail_under = 70

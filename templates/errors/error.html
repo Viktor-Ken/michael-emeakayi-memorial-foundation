@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ code }} — Michael Emeakayi Memorial Foundation{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container error-page">
+        <p class="hero-eyebrow">Error {{ code }}</p>
+        <h1>{{ 'Page not found' if code == 404 else 'Something went wrong' }}</h1>
+        <p>{{ message }}</p>
+        <p><a class="btn btn-primary" href="{{ url_for('index') }}">Back to the homepage</a></p>
+    </div>
+</section>
+{% endblock %}

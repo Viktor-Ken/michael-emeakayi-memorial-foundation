@@ -5,4 +5,7 @@ venv/
 foundation.db
 foundation.db-journal
 *.db
+backups/
+.coverage
+htmlcov/
 .DS_Store

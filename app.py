@@ -1,10 +1,75 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, abort
+import os
+
+from flask import Flask, abort, flash, redirect, render_template, request, url_for
+from flask_wtf import CSRFProtect
+from flask_wtf.csrf import CSRFError
 
 import db
+import validators as v
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "change-this-secret-key-before-deploying"
+app.config["SECRET_KEY"] = os.environ.get(
+    "SECRET_KEY", "change-this-secret-key-before-deploying"
+)
+app.config["MAX_CONTENT_LENGTH"] = 1_000_000
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = os.environ.get("SECURE_COOKIES", "") == "1"
+
+csrf = CSRFProtect(app)
 db.init_app(app)
+
+
+@app.after_request
+def set_security_headers(response):
+    response.headers.setdefault(
+        "Content-Security-Policy",
+        "default-src 'self'; script-src 'self'; style-src 'self'; "
+        "img-src 'self' data:; base-uri 'self'; form-action 'self'; frame-ancestors 'none'",
+    )
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    response.headers.setdefault(
+        "Permissions-Policy", "camera=(), microphone=(), geolocation=()"
+    )
+    return response
+
+
+@app.errorhandler(CSRFError)
+def handle_csrf_error(error):
+    return (
+        render_template(
+            "errors/error.html",
+            code=400,
+            message="The form expired. Please go back and try again.",
+        ),
+        400,
+    )
+
+
+@app.errorhandler(404)
+def not_found(error):
+    return (
+        render_template(
+            "errors/error.html",
+            code=404,
+            message="The page you are looking for does not exist.",
+        ),
+        404,
+    )
+
+
+@app.errorhandler(500)
+def server_error(error):
+    return (
+        render_template(
+            "errors/error.html",
+            code=500,
+            message="Something went wrong on our end. Please try again later.",
+        ),
+        500,
+    )
 
 
 @app.route("/")
@@ -43,8 +108,9 @@ def contact():
         subject = request.form.get("subject", "").strip()
         message = request.form.get("message", "").strip()
 
-        if not name or not email or not message:
-            flash("Please fill in your name, email and message.", "error")
+        error = v.validate_contact(name, email, subject, message)
+        if error:
+            flash(error, "error")
         else:
             db.execute(
                 "INSERT INTO messages (name, email, subject, message) VALUES (?, ?, ?, ?)",
@@ -87,8 +153,9 @@ def _trustee_form(mode, tid=None):
         name = request.form.get("name", "").strip()
         role = request.form.get("role", "").strip()
         bio = request.form.get("bio", "").strip()
-        if not name or not role:
-            flash("Name and role are required.", "error")
+        error = v.validate_trustee(name, role, bio)
+        if error:
+            flash(error, "error")
         else:
             if mode == "edit":
                 db.execute(
@@ -143,12 +210,14 @@ def _event_form(mode, eid=None):
         date = request.form.get("date", "").strip()
         location = request.form.get("location", "").strip()
         description = request.form.get("description", "").strip()
-        if not title or not date:
-            flash("Title and date are required.", "error")
+        error = v.validate_event(title, date, location, description)
+        if error:
+            flash(error, "error")
         else:
             if mode == "edit":
                 db.execute(
-                    "UPDATE events SET title = ?, date = ?, location = ?, description = ? WHERE id = ?",
+                    "UPDATE events SET title = ?, date = ?, location = ?, "
+                    "description = ? WHERE id = ?",
                     (title, date, location, description, eid),
                 )
                 flash("Event updated.", "success")
@@ -194,4 +263,5 @@ def admin_message_delete(mid):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    debug = os.environ.get("FLASK_DEBUG", "") == "1"
+    app.run(debug=debug)

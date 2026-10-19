@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
     <header class="site-header">
         <div class="container header-inner">
             <a class="brand" href="{{ url_for('index') }}">
@@ -28,7 +29,7 @@
         </div>
     </header>
 
-    <main>
+    <main id="main">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="container">
@@ -70,15 +71,6 @@
         </div>
     </footer>
 
-    <script>
-        const toggle = document.querySelector(".nav-toggle");
-        const nav = document.querySelector(".main-nav");
-        if (toggle && nav) {
-            toggle.addEventListener("click", function () {
-                const open = nav.classList.toggle("open");
-                toggle.setAttribute("aria-expanded", open);
-            });
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/main.js') }}" defer></script>
 </body>
 </html>

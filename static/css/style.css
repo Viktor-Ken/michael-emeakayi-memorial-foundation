@@ -4,6 +4,7 @@
     --primary-light: #e6f4f2;
     --accent: #f59e0b;
     --accent-dark: #d97706;
+    --accent-text: #92400e;
     --ink: #1f2937;
     --ink-soft: #4b5b6b;
     --paper: #ffffff;
@@ -153,7 +154,7 @@ a:hover { text-decoration: underline; }
     text-align: center;
 }
 
-.hero .hero-eyebrow, .page-hero .hero-eyebrow { color: rgba(255, 255, 255, 0.85); }
+.hero .hero-eyebrow, .page-hero .hero-eyebrow { color: rgba(255, 255, 255, 0.95); }
 
 .hero h1 {
     color: #fff;
@@ -162,7 +163,7 @@ a:hover { text-decoration: underline; }
 }
 
 .hero-lead {
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(255, 255, 255, 0.97);
     max-width: 640px;
     margin: 0 auto 32px;
     font-size: 1.1rem;
@@ -257,7 +258,7 @@ a:hover { text-decoration: underline; }
 .value-label {
     display: inline-block;
     font-weight: 800;
-    color: var(--accent-dark);
+    color: var(--accent-text);
     margin-bottom: 8px;
 }
 .value-item p { color: var(--ink-soft); }
@@ -405,7 +406,7 @@ a:hover { text-decoration: underline; }
 
 .trustee-card h3 { margin-bottom: 4px; }
 .trustee-role {
-    color: var(--accent-dark);
+    color: var(--accent-text);
     font-weight: 700;
     font-size: 0.9rem;
     letter-spacing: 0.3px;
@@ -511,12 +512,18 @@ a:hover { text-decoration: underline; }
     padding-top: 20px;
 }
 .footer-bottom p { font-size: 0.82rem; }
-.admin-link a { color: #64748b; }
+.admin-link a { color: #94a3b8; }
 
 /* ---------- Admin ---------- */
 .admin-bar {
     background: var(--primary-dark);
     padding: 12px 0;
+}
+.admin-bar-inner {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
 }
 .admin-bar a {
     color: rgba(255, 255, 255, 0.85);
@@ -604,6 +611,24 @@ a:hover { text-decoration: underline; }
 .table-actions { white-space: nowrap; }
 .table-actions form { display: inline; margin-right: 6px; }
 .table-actions .btn { vertical-align: middle; }
+
+/* ---------- Accessibility ---------- */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    padding: 10px 16px;
+    background: var(--ink);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 0 0 8px 0;
+}
+.skip-link:focus { left: 0; }
+
+.error-page { text-align: center; max-width: 560px; }
+.error-page h1 { margin: 10px 0 14px; }
+.error-page .btn { margin-top: 18px; }
 
 /* ---------- Responsive ---------- */
 @media (max-width: 860px) {
